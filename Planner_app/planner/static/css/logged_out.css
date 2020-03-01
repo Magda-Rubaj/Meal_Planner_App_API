@@ -1,0 +1,208 @@
+* {
+  margin: 0px;
+  padding: 0px; }
+
+html, body {
+  min-height: 100vh;
+  position: absolute; }
+
+body {
+  overflow-x: hidden;
+  color: #242424;
+  background: url("/static/images/geometric.png") no-repeat;
+  background-size: 100vw; }
+
+.wrapper {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-flow: column; }
+
+.centered {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: center; }
+
+#top {
+  background: url("/static/images/index_bg1.jpg") no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding: 0;
+  margin: 0;
+  flex-basis: 100vh;
+  flex-shrink: 0;
+  flex-grow: 0;
+  width: 100%;
+  text-align: center;
+  font-family: 'Gloria Hallelujah', cursive;
+  display: flex;
+  flex-direction: column; }
+  #top h1 {
+    font-size: 100px;
+    text-shadow: 5px 5px 8px #474747;
+    color: white; }
+  #top a {
+    display: block;
+    font-size: 22px;
+    padding: 16px;
+    width: 150px; }
+
+nav {
+  z-index: 5;
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.6);
+  width: 100%;
+  height: 80px;
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  box-shadow: 0px 5px 4px rgba(100, 100, 100, 0.2); }
+
+nav a {
+  display: block;
+  width: 100px;
+  text-align: center;
+  padding: 2px 10px 10px;
+  margin: 20px;
+  font-size: 22px;
+  font-family: 'Gloria Hallelujah', cursive;
+  text-decoration: none;
+  color: #242424; }
+
+#black_button {
+  background: black;
+  border-radius: 13px;
+  color: white; }
+
+.green_button {
+  background: #2dd063;
+  background: linear-gradient(223deg, #2dd063 17%, #30bb00 100%);
+  border-radius: 13px; }
+
+#wavy {
+  background: url("/static/images/index_bg2.png") no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 1000px; }
+
+.centered img {
+  width: 40%;
+  height: 40%;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  padding: 15px;
+  box-shadow: 0 0 20px rgba(100, 100, 100, 0.4); }
+
+.centered figure {
+  display: block;
+  margin-top: 5%;
+  flex-basis: 500px; }
+
+#wavy h2 {
+  text-align: center;
+  font-family: 'Gloria Hallelujah', cursive;
+  font-size: 80px; }
+
+.centered figcaption {
+  font-family: 'Gloria Hallelujah', cursive;
+  font-size: 38px;
+  max-width: 70%;
+  margin: auto; }
+
+#advs {
+  margin-top: 150px; }
+
+#advs h2 {
+  text-align: center;
+  font-family: 'Gloria Hallelujah', cursive;
+  font-size: 80px; }
+
+#advs h3 {
+  font-family: 'Gloria Hallelujah', cursive;
+  font-size: 55px; }
+
+.points {
+  display: flex;
+  align-items: center;
+  background-size: 100% 100px;
+  margin-top: 100px;
+  justify-content: right;
+  margin-top: 200px;
+  margin-bottom: 500px;
+  position: relative; }
+
+.points img {
+  position: absolute;
+  z-index: 2;
+  width: 450px;
+  height: 450px;
+  display: block;
+  margin-left: 50px; }
+
+.points-inside {
+  display: block;
+  width: 100%;
+  height: 320px;
+  text-align: left;
+  position: relative;
+  background: white;
+  box-shadow: 0 0 12px rgba(150, 150, 150, 0.4); }
+
+.points-inside p {
+  font-size: 20px;
+  font-family: 'Solway', serif;
+  margin-top: 15px; }
+
+#text-wrapper {
+  margin-right: 15%;
+  display: flex;
+  flex-flow: column;
+  max-width: 40%; }
+
+.right #text-wrapper {
+  float: right; }
+
+.left #text-wrapper {
+  margin-left: 150px; }
+
+#reversed {
+  width: 100%; }
+  #reversed img {
+    transform: translateY(-13%);
+    right: 7%; }
+
+footer {
+  display: flex;
+  background: url("/static/images/footer.png") no-repeat;
+  background-size: cover;
+  min-height: 450px; }
+  footer h4 {
+    font-family: 'Gloria Hallelujah', cursive;
+    font-size: 20px; }
+  footer p {
+    font-family: 'Solway', serif;
+    margin-top: 10px; }
+  footer #adress-wrapper {
+    margin-top: 13%;
+    margin-left: 15%; }
+  footer #info-wrapper {
+    margin-top: 13%;
+    margin-left: 15%; }
+    footer #info-wrapper h4 {
+      margin-top: 10px; }
+    footer #info-wrapper #media-icons {
+      display: inline-block; }
+      footer #info-wrapper #media-icons img {
+        margin-top: 5px;
+        width: 40px;
+        height: 40px;
+        margin-right: 20px; }
+
+/*# sourceMappingURL=logged_out.css.map */

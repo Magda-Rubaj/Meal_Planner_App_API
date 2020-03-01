@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            {% load static %}
+            <link rel="stylesheet" href="{% static 'css/logged_out.css' %}" type="text/css">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|PT+Sans|Solway:300&display=swap">
+            <title>Planner</title>  
+    </head>
+    <body>
+        <nav>
+                <a href="index.html">Home</a>
+                <a>Features</a>
+                <a>Contact</a>
+                <a id="black_button">Log in</a>
+                <a class="green_button">Sign up</a>
+        </nav>
+            <div class="wrapper">
+
+                <div id="top" class="centered">
+                        <h1>Your simple meals and shopping planner</h1>
+                        <a class="green_button">Get Started</a>
+                </div>
+            </div>
+            <div id="wavy">
+                        <h2>Plan your diet ahead</h2>
+                        <div class="centered">
+                                {% load static %}
+                                <figure>
+                                        <img src="{% static 'images/salad.png' %}">
+                                        <figcaption>Add your own meals</figcaption>
+                                </figure>
+                                <figure>
+                                        <img src="{% static 'images/calendar.png' %}">
+                                        <figcaption>Make an entry in calendar</figcaption>
+                                </figure>
+                                <figure>
+                                        <img src="{% static 'images/cart.png' %}">
+                                        <figcaption>Create a shopping list</figcaption>
+                                </figure>
+                        </div>
+            </div>
+        <div id="advs">
+                <h2>Why us?</h2>
+                <div class="points">
+                        <img src="{% static 'images/money-bag.png' %}">
+                        <div class="points-inside">
+                                <div class = "right">
+                                        <div id="text-wrapper">
+                                                <h3>It's Free</h3>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                                Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem. 
+                                                Etiam pellentesque aliquet tellus. Phasellus pharetra nulla ac diam. Quisque semper justo at risus.
+                                                Donec venenatis, turpis vel hendrerit interdum, dui ligula ultricies purus, 
+                                                sed posuere libero dui id orci.
+                                                </p>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+                <div class="points">
+                        <div id="reversed">
+                                <img src="{% static 'images/padlock.png' %}">
+                                <div class="points-inside">
+                                        <div class = "left">
+                                                <div id="text-wrapper">
+                                                        <h3>We won't restrict you</h3>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                                        Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem. 
+                                                        Etiam pellentesque aliquet tellus. Phasellus pharetra nulla ac diam. Quisque semper justo at risus.
+                                                        Donec venenatis, turpis vel hendrerit interdum, dui ligula ultricies purus, 
+                                                        sed posuere libero dui id orci.
+                                                        </p>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                
+                </div>
+                <div class="points">
+                        <img src="{% static 'images/puzzle.png' %}">
+                        <div class="points-inside">
+                                <div class = "right">
+                                        <div id="text-wrapper">
+                                                <h3>Simple and intuitive</h3>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                                Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem. 
+                                                Etiam pellentesque aliquet tellus. Phasellus pharetra nulla ac diam. Quisque semper justo at risus.
+                                                Donec venenatis, turpis vel hendrerit interdum, dui ligula ultricies purus, 
+                                                sed posuere libero dui id orci.
+                                                </p>
+                                        </div>
+                                </div>
+                        </div>
+
+                        
+                </div>
+                        
+                
+            
+        </div>
+
+                <footer>
+                        <div id="adress-wrapper">
+                                <h4>Contact Us</h4>
+                                <p>Lorem ipsum dolor sit amet</p>
+                                <p>Lorem ipsum dolor</p>
+                                <p>Lorem ipsum dolor sit amet</p>
+                                <p>Poland</p>
+                        </div>
+                        <div id="info-wrapper">
+                                <p>+48 123 456 789</p>
+                                <p>magda.rubaj0@gmail.com</p>
+                                <h4>Media</h4>
+                                <div id ="media-icons">
+                                        <img src="{% static 'images/github.png' %}">
+                                        <img src="{% static 'images/linkedin.png' %}">
+                                        <img src="{% static 'images/facebook.png' %}">
+                                </div>
+                        </div>
+                        
+                </footer>   
+ 
+
+    </body>
+
+</html>
