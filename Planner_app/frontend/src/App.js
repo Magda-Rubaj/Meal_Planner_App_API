@@ -47,7 +47,6 @@ class App extends Component {
         <HashRouter>
             <div id="wrapper">
               <div id="side_container">
-                <div className="line"></div>
                 <div id="nav_wrapper">
                   <h4>{this.state.name}</h4>
                   <h4>{this.state.currentWeight}</h4>

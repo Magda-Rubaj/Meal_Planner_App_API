@@ -33,17 +33,17 @@ class Products extends Component{
         fat: document.getElementById("fat").value,
         owner: this.props.userId  
       })
-      console.log(added);
-      this.setState(prevState => ({
-        products: [...prevState.products, added]
-      }))
       fetch('http://127.0.0.1:8000/api/products/',{
             method: 'post',
             headers: {'Content-Type':'application/json'},
             body: added
           })
             .then(response => response.json())
-            .then(json => console.log(json))
+            .then(() => {
+              this.setState(prevState => ({
+                products: [...prevState.products, JSON.parse(added)]
+              }))
+            })
     }
     render() {
         return (
