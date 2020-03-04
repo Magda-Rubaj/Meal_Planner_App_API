@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Popup from "reactjs-popup";
-
+import ProductApi from '../api/ProductApi'
 class Products extends Component{
 
     constructor(){
@@ -10,16 +10,12 @@ class Products extends Component{
         }
     }
     componentWillMount() {
-      fetch('http://127.0.0.1:8000/api/products')  
-        .then(res => res.json())
+      ProductApi.products.getProducts()
         .then(products => products.filter(x => x.owner===this.props.userId))
         .then(filtered => {
           this.setState({
             products:filtered
           });
-        })
-        .catch(e => {
-          console.log(e);
         })
     }
     addProduct = (e) =>{
@@ -33,16 +29,14 @@ class Products extends Component{
         fat: document.getElementById("fat").value,
         owner: this.props.userId  
       })
-      fetch('http://127.0.0.1:8000/api/products/',{
-            method: 'post',
-            headers: {'Content-Type':'application/json'},
-            body: added
-          })
-            .then(response => response.json())
-            .then(() => {
-              this.setState(prevState => ({
-                products: [...prevState.products, JSON.parse(added)]
-              }))
+      ProductApi.products.postProduct(added)
+            .then(res => {
+              console.log(res.status);
+              if(res.status===201){
+                this.setState(prevState => ({
+                  products: [...prevState.products, JSON.parse(added)]
+                }))
+              }
             })
     }
     render() {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Popup from "reactjs-popup";
+import UserApi from '../api/UserApi.js';
 
 class Profile extends Component {
         constructor(){
@@ -11,57 +12,60 @@ class Profile extends Component {
             };
         }
         componentWillMount() {
-          fetch('http://127.0.0.1:8000/api/users/1')
-            .then(res => res.json())
-            .then(user => {
+          UserApi.user.getUser()
+          .then(user => {
               this.setState({
                 id: user.id,
                 name: user.name,
                 currentWeight: user.currentWeight,
                 desiredWeight: user.desiredWeight
-              });
-            }) 
-            .catch(e => {
-              console.log(e);
-            })            
+              })
+          });
         }
         onNameChange = (e) => {
           e.preventDefault();
+          const arg = this.state;
           this.setState({
             name: document.getElementById("name").value
-          }, ()=>{this.fetchToServer()
+          }, ()=>{this.fetchToServer(arg)
           });
         }
 
         onCurrWeightChange = (e) => {
           e.preventDefault();
+          const arg = this.state;
           this.setState({
             currentWeight: document.getElementById("current").value
-          }, ()=>{this.fetchToServer()
+          }, ()=>{this.fetchToServer(arg)
           });
         }
         
         onDesWeightChange = (e) => {
           e.preventDefault();
+          const arg = this.state;
           this.setState({
             desiredWeight: document.getElementById("desired").value
-          }, ()=>{this.fetchToServer()
+          }, ()=>{this.fetchToServer(arg)
           });
         }
 
-        fetchToServer(){
-          this.props.handleChange(this.state);
-          fetch('http://127.0.0.1:8000/api/users/1/',{
-            method: 'put',
-            headers: {'Content-Type':'application/json'},
-            body: JSON.stringify({
-              "name": this.state.name,
-              "currentWeight":this.state.currentWeight,
-              "desiredWeight":this.state.desiredWeight
-            })
+        fetchToServer = a => {
+          const user = JSON.stringify({
+            "name": this.state.name,
+            "currentWeight":this.state.currentWeight,
+            "desiredWeight":this.state.desiredWeight
           })
-            .then(response => response.json())
-            .then(json => console.log(json))
+          UserApi.user.putUser(user)
+          .then(res =>{
+            if(res.status!==200){
+              this.setState({
+                name:a.name,
+                currentWeight:a.currentWeight,
+                desiredWeight:a.desiredWeight
+              })
+              this.props.handleChange(this.state);
+            }
+          })
         }
 
           render() {
@@ -74,7 +78,7 @@ class Profile extends Component {
                     <Popup modal trigger={<button>Change name</button>}>
                         <form onSubmit={this.onNameChange}>
                           Change name:<br/>
-                          <input type="text"id="name"/><br/>
+                          <input type="text" id="name"/><br/>
                           <input type="submit" value="Save"/>
                         </form>
                     </Popup>

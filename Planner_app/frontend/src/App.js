@@ -7,6 +7,7 @@ import {
 import Profile from "./components/Profile";
 import Products from "./components/Products";
 import './App.css';
+import UserApi from './api/UserApi.js';
 
 class App extends Component {
 
@@ -20,8 +21,7 @@ class App extends Component {
     };
   }
   componentWillMount() {
-      fetch('http://127.0.0.1:8000/api/users/1')
-        .then(res => res.json())
+    UserApi.user.getUser()
         .then(user => {
           this.setState({
             id: user.id,
@@ -30,10 +30,7 @@ class App extends Component {
             desiredWeight: user.desiredWeight
           });
         }) 
-        .catch(e => {
-          console.log(e);
-        })
-}
+  }
   changeInfo = callback => {
     this.setState({
       name:callback.name,
