@@ -1,7 +1,9 @@
 from rest_framework import generics, viewsets
-
-from .models import Users, Products
-from .serializers import UserSerializer, ProductSerializer
+from rest_framework import permissions
+from rest_framework.decorators import action
+from .models import CustomUser, Products
+from .serializers import CustomUserSerializer, ProductSerializer
+from .permissions import IsPostOrAuth
 import logging
 
 
@@ -9,9 +11,10 @@ logger = logging.getLogger(__name__)
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = Users.objects.all()
-    serializer_class = UserSerializer   
-
+    permission_classes = (IsPostOrAuth, )
+    queryset = CustomUser.objects.all()
+    serializer_class = CustomUserSerializer   
+    
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Products.objects.all()
     serializer_class = ProductSerializer   

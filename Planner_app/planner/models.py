@@ -1,9 +1,9 @@
 from django.db import models
 from django import forms
+from django.contrib.auth.models import AbstractUser
 
 
-class Users(models.Model):
-    name = models.CharField(max_length=10)
+class CustomUser(AbstractUser):
     currentWeight = models.IntegerField()
     desiredWeight = models.IntegerField()
     def __str__(self):
@@ -14,7 +14,7 @@ class Products(models.Model):
     carbohydrates = models.FloatField()
     protein = models.FloatField()
     fat = models.FloatField()
-    owner = models.ForeignKey(Users, on_delete=models.CASCADE)
+    owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
 
     
