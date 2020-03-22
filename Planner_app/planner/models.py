@@ -4,10 +4,8 @@ from django.contrib.auth.models import AbstractUser
 
 
 class CustomUser(AbstractUser):
-    currentWeight = models.IntegerField()
-    desiredWeight = models.IntegerField()
-    def __str__(self):
-        return self.name
+    currentWeight = models.IntegerField(blank=True, default=0)
+    desiredWeight = models.IntegerField(blank=True, default=0)
 class Products(models.Model):
     name = models.CharField(max_length=20)
     calories = models.IntegerField()

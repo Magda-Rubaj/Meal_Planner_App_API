@@ -11,7 +11,7 @@ class Products extends Component{
     }
     componentWillMount() {
       ProductApi.products.getProducts()
-        .then(products => products.filter(x => x.owner===this.props.userId))
+        .then(products => products.filter(x => x.owner === localStorage.getItem('user_id')))
         .then(filtered => {
           this.setState({
             products:filtered

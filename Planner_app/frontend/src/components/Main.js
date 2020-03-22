@@ -4,28 +4,28 @@ import {
   NavLink,
   HashRouter
 } from "react-router-dom";
-import Profile from "./components/Profile";
-import Products from "./components/Products";
-import './App.css';
-import UserApi from './api/UserApi.js';
+import Profile from "./Profile";
+import Products from "./Products";
+import '../App.css';
+import UserApi from '../api/UserApi.js';
 
-class App extends Component {
+
+class Main extends Component {
 
   constructor(){
     super();
     this.state = {
-        id: 0,
-        name: "",
+        username: "",
         currentWeight: "",
         desiredWeight: ""
     };
   }
+
   componentWillMount() {
     UserApi.user.getUser()
         .then(user => {
           this.setState({
-            id: user.id,
-            name: user.name,
+            username: user.username,
             currentWeight: user.currentWeight,
             desiredWeight: user.desiredWeight
           });
@@ -33,7 +33,7 @@ class App extends Component {
   }
   changeInfo = callback => {
     this.setState({
-      name:callback.name,
+      username:callback.username,
       currentWeight:callback.currentWeight,
       desiredWeight:callback.desiredWeight
     })
@@ -45,7 +45,7 @@ class App extends Component {
             <div id="wrapper">
               <div id="side_container">
                 <div id="nav_wrapper">
-                  <h4>{this.state.name}</h4>
+                  <h4>{this.state.username}</h4>
                   <h4>{this.state.currentWeight}</h4>
                   <h4>{this.state.desiredWeight}</h4>
                   <nav>
@@ -62,10 +62,7 @@ class App extends Component {
                   path="/profile" 
                   render={(props) => <Profile {...props} handleChange={this.changeInfo} />}
                 />
-                <Route 
-                  path="/saved" 
-                  render={(props) => <Products {...props} userId={this.state.id} />}
-                />
+                <Route path="/saved" component={Products}/>
               </div>
              </div>
           </HashRouter>
@@ -74,5 +71,5 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Main;
 
