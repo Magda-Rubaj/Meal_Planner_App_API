@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from planner.models import CustomUser, Products
+from planner.models import CustomUser, Products, DailyMeals
 
 
 class CustomUserSerializer(serializers.ModelSerializer):
@@ -9,6 +9,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
             'username',
             'email',
             'password',
+            'avatar',
             'currentWeight',
             'desiredWeight',
         )
@@ -31,6 +32,7 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'name',
+            'image',
             'calories',
             'carbohydrates',
             'protein',
@@ -38,3 +40,11 @@ class ProductSerializer(serializers.ModelSerializer):
             'owner',
         )
         model = Products
+class DailyMealSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = (
+            'id',
+            'owner',
+            'meal'
+        )
+        model = DailyMeals

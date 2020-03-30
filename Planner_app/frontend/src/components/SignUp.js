@@ -11,7 +11,7 @@ class SignUp  extends Component{
             email: document.getElementById("email").value,
             password: document.getElementById("password").value,
             currentWeight: document.getElementById("currWeight").value,
-            desiredWeight: document.getElementById("desWeight").value, 
+            desiredWeight: document.getElementById("desWeight").value,
           })
         UserApi.user.postUser(user);      
     }

@@ -12,7 +12,8 @@ class Profile extends Component {
             this.state = {
                 username: "",
                 currentWeight: "",
-                desiredWeight: ""
+                desiredWeight: "",
+                avatar: ""
             };
         }
 
@@ -22,7 +23,7 @@ class Profile extends Component {
               this.setState({
                 username: user.username,
                 currentWeight: user.currentWeight,
-                desiredWeight: user.desiredWeight
+                desiredWeight: user.desiredWeight,
               })
               console.log(user);
           });
