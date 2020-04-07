@@ -25,7 +25,6 @@ class Profile extends Component {
                 currentWeight: user.currentWeight,
                 desiredWeight: user.desiredWeight,
               })
-              console.log(user);
           });
         }
 

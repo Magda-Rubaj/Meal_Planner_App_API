@@ -1,20 +1,7 @@
 export default {
-    products: {
-        getProducts: () => 
-          fetch('http://127.0.0.1:8000/api/products',{
-            method: 'get',
-            headers: {
-                'Authorization': "JWT " + localStorage.getItem('access_token'),
-                'Content-Type':'application/json',
-            },
-          })
-          .then(res => res.json())
-          .catch(e => {
-              console.log(e);
-          }),
-        
-        getSingleProduct: id => 
-          fetch(`http://127.0.0.1:8000/api/products/${id}`,{
+    plannedMeals: {
+        getPlannedMeals: () => 
+          fetch('http://127.0.0.1:8000/api/daily_meals/',{
             method: 'get',
             headers: {
                 'Authorization': "JWT " + localStorage.getItem('access_token'),
@@ -26,8 +13,8 @@ export default {
               console.log(e);
           }),
 
-        postProduct: added => 
-          fetch('http://127.0.0.1:8000/api/products/',{
+        postPlannedMeal: added => 
+          fetch('http://127.0.0.1:8000/api/daily_meals/',{
             method: 'post',
             headers: {
               'Authorization': "JWT " + localStorage.getItem('access_token'),

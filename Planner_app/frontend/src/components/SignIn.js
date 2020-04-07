@@ -6,14 +6,26 @@ class SignIn  extends Component{
     constructor(){
         super();
         this.state = {
-            logged: false
+            logged: false,
+            username: "",
+            password: "",
         }
+    }
+    onUsernameChange = e => {
+        this.setState({
+            username: e.target.value
+          });
+    }
+    onPasswordChange = e => {
+        this.setState({
+            password: e.target.value
+          });
     }
     login = e =>{
         e.preventDefault();
         const user = JSON.stringify({
-            username: document.getElementById("username").value,
-            password: document.getElementById("password").value
+            username: this.state.username,
+            password: this.state.password
         })
         TokenApi.token.obtain(user)
             .then(res => {
@@ -22,11 +34,10 @@ class SignIn  extends Component{
                     localStorage.setItem('refresh_token', res.refresh);
                     const decoded = jwt(res.access);
                     localStorage.setItem('user_id', decoded.user_id);
-                    const logged = true;
                     this.setState({
-                        logged: logged
+                        logged: true
                     });
-                    this.props.handleChange(logged);
+                    this.props.handleChange(true);
                 }
             })
     }
@@ -34,8 +45,16 @@ class SignIn  extends Component{
         return (
         <div>
             <form onSubmit={this.login}> 
-                <input type="username" id="username"/><br/>
-                <input type="password" id="password"/><br/>
+                <input 
+                    type="username"
+                    value={this.state.username}
+                    onChange={this.onUsernameChange}
+                /><br/>
+                <input 
+                    type="username"
+                    value={this.state.password}
+                    onChange={this.onPasswordChange}
+                /><br/>
                 <input type="submit" value="Sign In"/><br/>
             </form>
         </div>

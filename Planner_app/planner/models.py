@@ -10,7 +10,6 @@ class CustomUser(AbstractUser):
 
 class Products(models.Model):
     name = models.CharField(max_length=20)
-    image = models.ImageField()
     calories = models.IntegerField()
     carbohydrates = models.FloatField()
     protein = models.FloatField()
@@ -18,9 +17,15 @@ class Products(models.Model):
     owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
 class DailyMeals(models.Model):
-    owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    owner =  models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     meal =  models.ForeignKey(Products, on_delete=models.CASCADE)
     date = models.IntegerField()
+
+class ShoppingListItem(models.Model):
+    owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    content = models.CharField(max_length=20)
+    date = models.IntegerField()
+    price = models.FloatField(blank=True)
 
 
 

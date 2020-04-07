@@ -1,8 +1,8 @@
 from rest_framework import generics, viewsets
 from rest_framework import permissions
 from rest_framework.decorators import action
-from .models import CustomUser, Products, DailyMeals
-from .serializers import CustomUserSerializer, ProductSerializer, DailyMealSerializer
+from .models import CustomUser, Products, DailyMeals, ShoppingListItem
+from .serializers import CustomUserSerializer, ProductSerializer, DailyMealSerializer, ShoppingListSerializer
 from .permissions import IsPostOrAuth
 
 
@@ -18,3 +18,7 @@ class ProductViewSet(viewsets.ModelViewSet):
 class DailyMealsViewSet(viewsets.ModelViewSet):
     queryset = DailyMeals.objects.all()
     serializer_class = DailyMealSerializer 
+
+class ShoppingListViewSet(viewsets.ModelViewSet):
+    queryset = ShoppingListItem.objects.all()
+    serializer_class = ShoppingListSerializer 

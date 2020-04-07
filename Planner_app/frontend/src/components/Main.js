@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
   Route,
-  NavLink,
   HashRouter,
 } from "react-router-dom";
 import Profile from "./Profile";
@@ -10,6 +9,7 @@ import '../App.css';
 import UserApi from '../api/UserApi.js';
 import CalendarComp from './CalendarComp';
 import CalendarDay from './CalendarDay';
+import Nav from './Nav';
 import TokenApi from '../api/TokenApi.js';
 
 
@@ -21,8 +21,7 @@ class Main extends Component {
         username: "",
         currentWeight: "",
         desiredWeight: "",
-        day: 0,
-        month: 0
+        date: 0
     };
   }
 
@@ -43,27 +42,22 @@ class Main extends Component {
       desiredWeight:callback.desiredWeight
     })
   }
-  renderDay = (month, day) =>{
+  renderDay = (month, day, year) =>{
       this.setState({
-        day: day,
-        month: month
+        date: day + month + year
       })
   }
-  logout = () =>{
-    localStorage.clear();
-    window.location.reload(false);
-  }
-  refresh = () =>{
+  refresh = () => {
     const refresh = JSON.stringify({
       refresh: localStorage.getItem('refresh_token')
     })
     TokenApi.token.refresh(refresh)
-            .then(res => {
+          .then(res => {
                 if(res !== null){
                     localStorage.setItem('access_token', res.access);
                     localStorage.setItem('refresh_token', res.refresh);
                 }
-            })
+          })
   }
   render(){
     return (
@@ -72,18 +66,10 @@ class Main extends Component {
         <HashRouter>
             <div id="wrapper">
               <div id="side_container">
-                <div id="nav_wrapper">
                   <h4>{this.state.username}</h4>
                   <h4>{this.state.currentWeight}</h4>
                   <h4>{this.state.desiredWeight}</h4>
-                  <nav>
-                    <p>Home</p>
-                    <NavLink to="/profile">Profile</NavLink>
-                    <NavLink to="/calendar">Calendar</NavLink>
-                    <NavLink to="/saved">Saved products and meals</NavLink>
-                    <button onClick={this.logout}>Log out</button>
-                  </nav>
-                </div>
+                  <Nav/>
               </div>
               <div id="main_container">
                 <Route 
@@ -96,8 +82,8 @@ class Main extends Component {
                 />
                 <Route path="/saved" component={Products}/>
                 <Route 
-                  path={'/' + this.state.day + this.state.month}
-                  component={CalendarDay}
+                  path={'/' + this.state.date}
+                  render={(props) => <CalendarDay {...props} date={this.state.date} />}
                 />
               </div>
              </div>
