@@ -4,12 +4,13 @@ from django.contrib.auth.models import AbstractUser
 
 
 class CustomUser(AbstractUser):
-    avatar = models.ImageField(blank=True)
+    avatar = models.ImageField(blank=True, upload_to='post_images', default='defaults\default_avatar.png')
     currentWeight = models.IntegerField(blank=True, default=0)
     desiredWeight = models.IntegerField(blank=True, default=0)
 
 class Products(models.Model):
     name = models.CharField(max_length=20)
+    image = models.ImageField(blank=True, upload_to='post_images', default='defaults\default_meal.png')
     calories = models.IntegerField()
     carbohydrates = models.FloatField()
     protein = models.FloatField()

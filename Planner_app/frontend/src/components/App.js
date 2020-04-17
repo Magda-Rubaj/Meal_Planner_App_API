@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Main from "./Main";
 import Guest from "./Guest";
-import '../App.css';
 import UserApi from '../api/UserApi.js';
 class App extends Component {
   constructor(){

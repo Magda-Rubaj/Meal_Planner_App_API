@@ -11,17 +11,25 @@ class Nav extends Component {
    
     render(){
         return (
-            <div id="side_container">
-                <div id="nav_wrapper">
+                <div className="nav_wrapper">
                 <nav>
-                    <p>Home</p>
-                    <NavLink to="/profile">Profile</NavLink>
-                    <NavLink to="/calendar">Calendar</NavLink>
-                    <NavLink to="/saved">Saved products and meals</NavLink>
-                    <button onClick={this.logout}>Log out</button>
+                    <div className="nav_item_wrapper">
+                        <NavLink id="home" className="navitem" to="/home">Home</NavLink>
+                    </div>
+                    <div className="nav_item_wrapper">
+                        <NavLink id="profile" className="navitem" to="/profile">Profile</NavLink>
+                   </div>
+                    <div className="nav_item_wrapper">
+                        <NavLink id="calendar" className="navitem" to="/calendar">Calendar</NavLink>
+                    </div>
+                    <div className="nav_item_wrapper">
+                        <NavLink id="saved" className="navitem" to="/saved">Saved meals</NavLink>
+                    </div>
+                    <div className="nav_item_wrapper">
+                        <button id="logout" className="navitem" onClick={this.logout}>Log out</button>
+                    </div>
                 </nav>
                 </div>
-            </div>
         );
     }
 }

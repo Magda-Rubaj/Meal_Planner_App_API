@@ -3,6 +3,7 @@ import UserApi from '../api/UserApi.js';
 import UsernameChange from "./UsernameChange";
 import CurrWeightChange from "./CurrWeightChange";
 import DesWeightChange from "./DesWeightChange";
+import AvatarChange from "./AvatarChange";
 
 
 class Profile extends Component {
@@ -24,6 +25,7 @@ class Profile extends Component {
                 username: user.username,
                 currentWeight: user.currentWeight,
                 desiredWeight: user.desiredWeight,
+                avatar: user.avatar
               })
           });
         }
@@ -31,6 +33,7 @@ class Profile extends Component {
         fetchToServer = (body, request, property, value) => {
           UserApi.user.patchUser(request)
           .then(res =>{
+            console.log(res);
             if(res.status === 200){
               this.setState({
                 [property]: value
@@ -42,27 +45,42 @@ class Profile extends Component {
 
           render() {
             return (
-              <div id="profile_wrapper">
+              <div className="profile_wrapper">
                 <h2>Profile</h2>
-                <div id="informations">
-                    <h5>USERNAME:</h5>
-                    <p>{this.state.username}</p>
-                    <UsernameChange  
-                      handleFetch={this.fetchToServer} 
-                      prev={this.state}
-                    />
-                    <h5>CURRENT WEIGHT:</h5>
-                    <p>{this.state.currentWeight}</p>
-                    <CurrWeightChange
-                      handleFetch={this.fetchToServer} 
-                      prev={this.state}
-                    />
-                    <h5>DESIRED WEIGHT:</h5>
-                    <p>{this.state.desiredWeight}</p>
-                    <DesWeightChange
-                      handleFetch={this.fetchToServer} 
-                      prev={this.state}
-                    />
+                <div className="user_info">
+                    <div className="info_left">
+                      <div className="info_block">
+                        <h5>Username</h5>
+                        <h6>{this.state.username}</h6>
+                        <UsernameChange  
+                          handleFetch={this.fetchToServer} 
+                          prev={this.state}
+                        />
+                      </div>
+                      <div className="info_block">
+                        <h5>Current Weight</h5>
+                        <h6>{this.state.currentWeight}</h6>
+                        <CurrWeightChange
+                          handleFetch={this.fetchToServer} 
+                          prev={this.state}
+                        />
+                      </div>
+                      <div className="info_block">
+                        <h5>Desired Weight</h5>
+                        <h6>{this.state.desiredWeight}</h6>
+                        <DesWeightChange
+                          handleFetch={this.fetchToServer} 
+                          prev={this.state}
+                        />
+                      </div>
+                    </div>
+                    <div className="info_right">
+                      <img src={this.state.avatar} alt="avatar" height="100" width="100"/>
+                      <AvatarChange 
+                        handleFetch={this.fetchToServer} 
+                        prev={this.state}
+                      />
+                    </div>
                 </div>
               </div>
             );

@@ -43,19 +43,22 @@ class SignIn  extends Component{
     }
     render() {
         return (
-        <div>
+        <div className="Login">
+            <h3>Login</h3>
             <form onSubmit={this.login}> 
+                <h5>Username</h5>
                 <input 
                     type="username"
                     value={this.state.username}
                     onChange={this.onUsernameChange}
                 /><br/>
+                <h5>Password</h5>
                 <input 
-                    type="username"
+                    type="password"
                     value={this.state.password}
                     onChange={this.onPasswordChange}
                 /><br/>
-                <input type="submit" value="Sign In"/><br/>
+                <input id="login_button" type="submit" value="Login"/><br/>
             </form>
         </div>
         );

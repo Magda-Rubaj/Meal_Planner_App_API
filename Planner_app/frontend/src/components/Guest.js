@@ -5,6 +5,7 @@ import {
     HashRouter,
     Redirect
 } from "react-router-dom";
+import '../css/Guest.css';
 import SignUp from "./SignUp";
 import SignIn from "./SignIn";
 
@@ -25,20 +26,21 @@ class Guest extends Component {
     }
     render(){
         return (
-            <div>
+            <div className="Guest">
                 <HashRouter>
-                    <div id="wrapper">
-                    <NavLink to="/signup">SignUp</NavLink>
-                    <NavLink to="/signin">SignIn</NavLink>
+                    <div className="Guest_nav">
+                        <NavLink className="navlink" to="/signup">Sign Up</NavLink>
+                        <NavLink className="navlink" to="/signin">Login</NavLink>
                     </div>
-                    <div id="content">
-                    <Route path="/signup" component={SignUp}/>
-                    <Route 
-                        path="/signin" 
-                        render={(props) => <SignIn {...props} handleChange={this.login} />}
-                    />
+                    <div className="Guest_content">
+                        <Route path="/signup" component={SignUp}/>
+                        <Route 
+                            path="/signin" 
+                            render={(props) => <SignIn {...props} handleChange={this.login} />}
+                        />
+                    </div>
                     <Redirect to="/signin" />
-                    </div>
+                    
                 </HashRouter>
             </div>
         );

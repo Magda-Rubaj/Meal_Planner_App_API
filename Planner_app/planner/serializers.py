@@ -24,7 +24,6 @@ class CustomUserSerializer(serializers.ModelSerializer):
             instance.set_password(instance.password)
             
         instance.save()
-        print(instance)
         return instance
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -32,6 +31,7 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'name',
+            'image',
             'calories',
             'carbohydrates',
             'protein',

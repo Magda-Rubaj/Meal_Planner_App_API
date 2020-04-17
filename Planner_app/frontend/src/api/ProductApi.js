@@ -1,7 +1,7 @@
 export default {
     products: {
-        getProducts: () => 
-          fetch('http://127.0.0.1:8000/api/products',{
+        getProducts: param => 
+          fetch(`http://127.0.0.1:8000/api/products/?owner=${param}`,{
             method: 'get',
             headers: {
                 'Authorization': "JWT " + localStorage.getItem('access_token'),
@@ -31,7 +31,6 @@ export default {
             method: 'post',
             headers: {
               'Authorization': "JWT " + localStorage.getItem('access_token'),
-              'Content-Type':'application/json'
             },
             body: added
           })

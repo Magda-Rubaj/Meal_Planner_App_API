@@ -23,7 +23,6 @@ export default {
             method: 'PATCH',
             headers: {
               'Authorization': "JWT " + localStorage.getItem('access_token'),
-              'Content-Type':'application/json'
             },
             body: body
           })

@@ -18,10 +18,9 @@ class UsernameChange extends Component {
     }
     handleSave = (e) => {
         e.preventDefault();
-        const request = JSON.stringify({
-            "username": this.state.username
-        })
-        this.props.handleFetch(this.state, request, 'username', this.state.username);
+        let data = new FormData();
+        data.append('username', this.state.username);
+        this.props.handleFetch(this.state, data, 'username', this.state.username);
         this.setState({
             username: ""
         })
@@ -29,7 +28,7 @@ class UsernameChange extends Component {
     render(){
         return (
             <div>
-                <Popup modal trigger={<button>Change name</button>}>
+                <Popup modal trigger={<button className="change_button">Edit</button>}>
                     <form onSubmit={this.handleSave}>
                         Change name:<br/>
                         <input

@@ -1,7 +1,7 @@
 export default {
     plannedMeals: {
-        getPlannedMeals: () => 
-          fetch('http://127.0.0.1:8000/api/daily_meals/',{
+        getPlannedMeals: params => 
+          fetch(`http://127.0.0.1:8000/api/daily_meals/?${params}`,{
             method: 'get',
             headers: {
                 'Authorization': "JWT " + localStorage.getItem('access_token'),

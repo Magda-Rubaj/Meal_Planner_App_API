@@ -18,10 +18,9 @@ class DesWeightChange extends Component {
     }
     handleSave = (e) => {
         e.preventDefault();
-        const request = JSON.stringify({
-            "desiredWeight": this.state.desiredWeight
-        })
-        this.props.handleFetch(this.state, request, 'desiredWeight', this.state.desiredWeight);
+        let data = new FormData();
+        data.append('desiredWeight', this.state.desiredWeight);
+        this.props.handleFetch(this.state, data, 'desiredWeight', this.state.desiredWeight);
         this.setState({
             desiredWeight: 0
         })
@@ -29,7 +28,7 @@ class DesWeightChange extends Component {
     render(){
         return (
             <div>
-                <Popup modal trigger={<button>Change desired weight</button>}>
+                <Popup modal trigger={<button className="change_button">Edit</button>}>
                         <form onSubmit={this.handleSave}>
                             Change desired weight:<br/>
                             <input 

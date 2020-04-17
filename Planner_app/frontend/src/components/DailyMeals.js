@@ -20,62 +20,82 @@ class DailyMeals extends Component {
         }
     }
     componentWillMount(){
-        PlannedMealsApi.plannedMeals.getPlannedMeals()
-            .then(meals => meals.filter(x => x.owner === parseInt(localStorage.getItem('user_id'))))
-            .then(meals => meals.filter(x => x.date === parseInt(this.props.date)))
+        PlannedMealsApi.plannedMeals.getPlannedMeals(
+            `owner=${localStorage.getItem('user_id')}&date=${this.props.date}`
+            )
             .then(meals => meals.map(x => {
                 ProductApi.products.getSingleProduct(x.meal)
                 .then(res => {
-                    const modified = ({ id: res.id, key: meals.length, value: res.name, label: res.name });
+                    const key = this.state.mealList.length;
+                    const newProperties = ({ key: key, value: res.name, label: res.name });
+                    const modified = Object.assign(newProperties, res)
                     this.setState(prevState => ({
                         mealList: [...prevState.mealList, modified],
+                        totalCalories: this.state.totalCalories + modified.calories,
+                        totalCarbs: this.state.totalCarbs + modified.carbohydrates,
+                        totalProtein: this.state.totalProtein + modified.protein,
+                        totalFats: this.state.totalFats + modified.fat,
                     }))
                     
                 })
             }))
-        ProductApi.products.getProducts()
-            .then(products => products.filter(x => x.owner === parseInt(localStorage.getItem('user_id'))))
-            .then(filtered => filtered.map(x => ({ id: x.id, key: filtered.length, value: x.name, label: x.name })))
-            .then(options => {
-                this.setState({
-                    mealChoice: options
-                });
-            }) 
+        ProductApi.products.getProducts(localStorage.getItem('user_id'))
+            .then(res => res.map(x => { 
+                    const key = this.state.mealChoice.length;
+                    const newProperties = ({ key: key, value: x.name, label: x.name });
+                    const modified = Object.assign(newProperties, x)
+                    this.setState(prevState => ({
+                        mealChoice: [...prevState.mealChoice, modified],
+                    }))
+            }))
+          
     }
 
     addMeal = e =>{
-        console.log(this.props.date);
         const meal = JSON.stringify({
             owner: parseInt(localStorage.getItem('user_id')),
             meal: this.state.selectedMeal.id,
             date: this.props.date
         });
 
-        console.log(meal);
         PlannedMealsApi.plannedMeals.postPlannedMeal(meal);
         this.setState(prevState => ({
             mealList: [...prevState.mealList, this.state.selectedMeal],
+            totalCalories: this.state.totalCalories +  this.state.selectedMeal.calories,
+            totalCarbs: this.state.totalCarbs +  this.state.selectedMeal.carbohydrates,
+            totalProtein: this.state.totalProtein +  this.state.selectedMeal.protein,
+            totalFats: this.state.totalFats +  this.state.selectedMeal.fat,
             selectedMeal: null
-          }))
-        
+        }))        
     }
     handleChange = selected => {
         this.setState({ selectedMeal: selected });
+    }
+
+    onQuantityChange = (e) => {
+        this.setState({
+            quantity: e.target.value
+        });
     }
     render(){
         return (
             <div>
                  {this.state.mealList.map(meal => <p key={meal.key}>{meal.value}</p>)}
+                 <p>{this.state.totalCalories}</p>
                 <Popup modal trigger={<button>Add Meal</button>}>
                     <div>
-                        <form>
+                        <form onSubmit={this.addMeal}>
                             <Select
                                 value={this.state.selectedMeal}
                                 options={this.state.mealChoice}
                                 onChange={this.handleChange}
                             />
-                            <input type="number"/>
-                            <button onClick={this.addMeal}>Add</button> 
+                           <input 
+                                type="number"
+                                value={this.state.quantity}
+                                onChange={this.onQuantityChange}
+                            />
+                            <input type="submit" value="Add"/>
                         </form>
                    </div>    
                 </Popup>       

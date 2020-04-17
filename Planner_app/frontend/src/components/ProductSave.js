@@ -8,11 +8,17 @@ class ProductSave extends Component {
         super();
         this.state = {
            name: "",
+           image: null,
            calories: 0,
            carbs: 0,
            protein: 0,
            fat: 0
         }
+    }
+    onImageChange = (e) => {
+        this.setState({
+            image: e.target.files[0]
+        });
     }
 
     onNameChange = (e) => {
@@ -42,17 +48,18 @@ class ProductSave extends Component {
     }
     handleSave = (e) => {
         e.preventDefault();
-        const request = JSON.stringify({
-            name: this.state.name,
-            calories: this.state.calories,
-            carbohydrates: this.state.carbs,
-            protein: this.state.protein,
-            fat: this.state.fat,
-            owner: localStorage.getItem('user_id')  
-        })
-        this.props.saveMeal(request)
+        let data = new FormData();
+        data.append('name', this.state.name);
+        data.append('image', this.state.image, this.state.image.name);
+        data.append('calories', this.state.calories);
+        data.append('carbohydrates', this.state.carbs);
+        data.append('protein', this.state.protein);
+        data.append('fat', this.state.fat);
+        data.append('owner', localStorage.getItem('user_id'));
+        this.props.saveMeal(data, this.state)
         this.setState({
             name: "",
+            image: null,
             calories: 0,
             carbs: 0,
             protein: 0,
@@ -62,8 +69,15 @@ class ProductSave extends Component {
     render(){
         return (
             <div>
-                <Popup modal trigger={<button>Add product/meal</button>}>
+                <Popup modal trigger={<button></button>}>
                     <form onSubmit={this.handleSave}>
+                            Image:<br/>
+                            <input 
+                                type="file"
+                                accept="image/png, image/jpeg"
+                                id="image"
+                                onChange={this.onImageChange}
+                            /><br/>
                             Name:<br/>
                             <input 
                                 type="text"

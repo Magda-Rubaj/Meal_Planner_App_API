@@ -18,10 +18,9 @@ class CurrWeightChange extends Component {
     }
     handleSave = (e) => {
         e.preventDefault();
-        const request = JSON.stringify({
-            "currentWeight": this.state.currentWeight
-        })
-        this.props.handleFetch(this.state, request, 'currentWeight', this.state.currentWeight);
+        let data = new FormData();
+        data.append('currentWeight', this.state.currentWeight);
+        this.props.handleFetch(this.state, data, 'currentWeight', this.state.currentWeight);
         this.setState({
             currentWeight: 0
         })
@@ -29,7 +28,7 @@ class CurrWeightChange extends Component {
     render(){
         return (
             <div>
-                <Popup modal trigger={<button>Change current weight</button>}>
+                <Popup modal trigger={<button className="change_button">Edit</button>}>
                         <form onSubmit={this.handleSave}>
                             Change current weight:<br/>
                             <input 

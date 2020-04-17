@@ -10,33 +10,47 @@ class Products extends Component{
         }
     }
     componentWillMount() {
-      ProductApi.products.getProducts()
-        .then(products => products.filter(x => x.owner === parseInt(localStorage.getItem('user_id'))))
-        .then(filtered => {
+      ProductApi.products.getProducts(localStorage.getItem('user_id'))
+        .then(res => {
           this.setState({
-            products:filtered
+            products: res
           });
         })
     }
-    addProduct = (request) =>{
+    addProduct = (request, added) =>{
       ProductApi.products.postProduct(request)
             .then(res => {
-              console.log(res.status);
+              console.log(res);
               if(res.status===201){
+                const newOne = {
+                  id: this.state.products.length,
+                  name: added.name,
+                  image: 'http://127.0.0.1:8000/media/post_images/' + added.image.name,
+                  calories: added.calories,
+                  carbohydrates: added.carbs,
+                  protein: added.protein,
+                  fat: added.fat,
+                  owner: localStorage.getItem('user_id')  
+              }
                 this.setState(prevState => ({
-                  products: [...prevState.products, JSON.parse(request)]
+                  products: [...prevState.products, newOne]
                 }))
               }
             })
     }
     render() {
         return (
-         <div>
-            <h2>Saved products and meals</h2>
-            <div id="products_wrapper">
-              {this.state.products.map(product => <p key={product.id}>{product.name}</p>)}
-            </div>
-            <ProductSave saveMeal={this.addProduct}/>               
+         <div className="meals_wrapper">
+            <h2>Saved meals</h2>
+            <div className="meal_container">
+              {this.state.products.map(product => 
+                <figure key={product.id}>
+                  <img src={product.image} alt="meal" height="85" width="85"/>
+                  <figcaption>{product.name}</figcaption>
+                </figure>
+              )}
+              <ProductSave saveMeal={this.addProduct}/> 
+            </div>              
          </div>
         );
       }

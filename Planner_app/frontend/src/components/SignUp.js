@@ -10,8 +10,8 @@ class SignUp  extends Component{
             username: "",
             email: "",
             password: "",
-            currentWeight: 0,
-            desiredWeight: 0
+            currentWeight: null,
+            desiredWeight: null
         }
     }
     onEmailChange = e => {
@@ -54,27 +54,33 @@ class SignUp  extends Component{
     render() {
         return (
          <div>
+             <h3>Sign Up</h3>
              <form onSubmit={this.register}>
+             <h5>Email</h5>
                 <input 
                     type="email"
                     value={this.state.email}
                     onChange={this.state.onEmailChange}
                 /><br/>
+                <h5>Username</h5>
                 <input 
-                    type="text"
+                    type="username"
                     value={this.state.username}
                     onChange={this.state.onUsernameChange}
                 /><br/>
+                <h5>Password</h5>
                 <input 
                     type="password"
                     value={this.state.password}
                     onChange={this.state.onPasswordChange}
                 /><br/>
+                <h5>Current Weight</h5>
                 <input 
                     type="number"
                     value={this.state.currentWeight}
                     onChange={this.state.onCurrWeightChange}
                 /><br/>
+                <h5>Desired Weight</h5>
                 <input 
                     type="number"
                     value={this.state.desiredWeight}
