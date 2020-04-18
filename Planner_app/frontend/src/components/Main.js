@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   Route,
   HashRouter,
+  Redirect
 } from "react-router-dom";
 import Profile from "./Profile";
 import Products from "./Products";
@@ -22,11 +23,12 @@ class Main extends Component {
       avatar: null,
       currentWeight: "",
       desiredWeight: "",
-      date: 0
+      date: 0,
+      mounted: false
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     UserApi.user.getUser()
       .then(user => {
         this.setState({
@@ -35,6 +37,9 @@ class Main extends Component {
           currentWeight: user.currentWeight,
           desiredWeight: user.desiredWeight
         });
+      })
+      this.setState({
+        mounted: true
       })
   }
   changeInfo = callback => {
@@ -62,41 +67,47 @@ class Main extends Component {
       })
   }
   render() {
-    return (
-      <div className="Main">
-        <button className="refresh" onClick={this.refresh}>Refresh</button>
-        <HashRouter>
-          <div className="wrapper">
-            <div className="side_container">
-              <div className="info_container">
-                <img className="info_item" src={this.state.avatar} alt="avatar" height="90" width="90" />
-                <h4 className="info_item">{this.state.username}</h4>
-                <div className="weight_wrapper">
-                  <h5 className="info_item">{this.state.currentWeight}</h5>
-                  <h5 className="info_item">{this.state.desiredWeight}</h5>
+    if(this.state.mounted){
+      return (
+        <div className="Main">
+          <button className="refresh" onClick={this.refresh}>Refresh</button>
+          <HashRouter>
+            <Redirect to="/home" />
+            <div className="wrapper">
+              <div className="side_container">
+                <div className="info_container">
+                  <img className="info_item" src={this.state.avatar} alt="avatar" height="90" width="90" />
+                  <h4 className="info_item">{this.state.username}</h4>
+                  <div className="weight_wrapper">
+                    <h5 className="info_item">{this.state.currentWeight}</h5>
+                    <h5 className="info_item">{this.state.desiredWeight}</h5>
+                  </div>
                 </div>
+                <Nav />
               </div>
-              <Nav />
+              <div className="main_container">
+                <Route
+                  path="/profile"
+                  render={(props) => <Profile {...props} handleChange={this.changeInfo} />}
+                />
+                <Route
+                  path="/calendar"
+                  render={(props) => <CalendarComp {...props} getDay={this.renderDay} />}
+                />
+                <Route path="/saved" component={Products} />
+                <Route
+                  path={'/' + this.state.date}
+                  render={(props) => <CalendarDay {...props} date={this.state.date} />}
+                />
+              </div>
             </div>
-            <div className="main_container">
-              <Route
-                path="/profile"
-                render={(props) => <Profile {...props} handleChange={this.changeInfo} />}
-              />
-              <Route
-                path="/calendar"
-                render={(props) => <CalendarComp {...props} getDay={this.renderDay} />}
-              />
-              <Route path="/saved" component={Products} />
-              <Route
-                path={'/' + this.state.date}
-                render={(props) => <CalendarDay {...props} date={this.state.date} />}
-              />
-            </div>
-          </div>
-        </HashRouter>
-      </div>
-    );
+          </HashRouter>
+        </div>
+      );
+    }
+    else{
+      return null;
+    }
   }
 }
 

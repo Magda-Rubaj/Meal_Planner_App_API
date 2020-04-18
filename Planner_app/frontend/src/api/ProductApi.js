@@ -1,7 +1,7 @@
 export default {
     products: {
-        getProducts: param => 
-          fetch(`http://127.0.0.1:8000/api/products/?owner=${param}`,{
+        getProducts: (owner, page) => 
+          fetch(`http://127.0.0.1:8000/api/products/?owner=${owner}&page=${page}`,{
             method: 'get',
             headers: {
                 'Authorization': "JWT " + localStorage.getItem('access_token'),

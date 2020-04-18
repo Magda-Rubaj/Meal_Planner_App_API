@@ -38,8 +38,9 @@ class Guest extends Component {
                             path="/signin" 
                             render={(props) => <SignIn {...props} handleChange={this.login} />}
                         />
-                    </div>
                     <Redirect to="/signin" />
+                    </div>
+                    
                     
                 </HashRouter>
             </div>

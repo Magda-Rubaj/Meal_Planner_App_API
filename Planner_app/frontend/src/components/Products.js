@@ -6,17 +6,44 @@ class Products extends Component{
     constructor(){
         super();
         this.state = {
-          products: []
+          products: [],
+          currPage: 1,
+          prevPage: null,
+          nextPage: null,
+          mounted: false
         }
     }
-    componentWillMount() {
-      ProductApi.products.getProducts(localStorage.getItem('user_id'))
+    setProducts = page => {
+      ProductApi.products.getProducts(localStorage.getItem('user_id'), page)
         .then(res => {
+          console.log(res);
           this.setState({
-            products: res
+            products: res.results,
+            currPage: page,
+            nextPage: res.next,
+            prevPage: res.previous
           });
         })
     }
+    componentDidMount() {
+      this.setProducts(1);
+      this.setState({
+        mounted: true
+      })
+    }
+
+    toNext = () =>{
+      if(this.state.nextPage !== null){
+        this.setProducts(this.state.nextPage);
+      }
+    }
+
+    toPrev = () =>{
+      if(this.state.prevPage !== null){
+        this.setProducts(this.state.prevPage);
+      }
+    }
+    
     addProduct = (request, added) =>{
       ProductApi.products.postProduct(request)
             .then(res => {
@@ -25,12 +52,17 @@ class Products extends Component{
                 const newOne = {
                   id: this.state.products.length,
                   name: added.name,
-                  image: 'http://127.0.0.1:8000/media/post_images/' + added.image.name,
                   calories: added.calories,
                   carbohydrates: added.carbs,
                   protein: added.protein,
                   fat: added.fat,
                   owner: localStorage.getItem('user_id')  
+              }
+              if(added.image !== null){
+                newOne.image = 'http://127.0.0.1:8000/media/post_images/' + added.image.name; 
+              }
+              else{
+                newOne.image = 'http://127.0.0.1:8000/media/defaults/default_meal.png/'; 
               }
                 this.setState(prevState => ({
                   products: [...prevState.products, newOne]
@@ -39,6 +71,7 @@ class Products extends Component{
             })
     }
     render() {
+      if(this.state.mounted){
         return (
          <div className="meals_wrapper">
             <h2>Saved meals</h2>
@@ -50,10 +83,19 @@ class Products extends Component{
                 </figure>
               )}
               <ProductSave saveMeal={this.addProduct}/> 
-            </div>              
+            </div> 
+            <div className="pagination">
+              <button onClick={this.toPrev}>prev</button>
+              <label>{this.state.currPage}</label>
+              <button onClick={this.toNext}>next</button>
+            </div>            
          </div>
         );
       }
+      else{
+        return null;
+      }  
+    }
 }
 
 export default Products;

@@ -9,7 +9,8 @@ class ShoppingList extends Component {
         this.state = {
             totalCost: 0,
             added: {key: 0, name: "", price: 0},
-            shoppingList: []
+            shoppingList: [],
+            mounted: false
         }
     }
     componentDidMount(){
@@ -27,6 +28,9 @@ class ShoppingList extends Component {
                     totalCost: this.state.totalCost + obj.price
                 }))
             }))
+            this.setState({
+                mounted: true
+            })
     }
     addShoppingItem = e => {
         e.preventDefault();
@@ -64,32 +68,37 @@ class ShoppingList extends Component {
     }
     
     render(){
-        return (
-            <div>
-                {this.state.shoppingList.map(x => [
-                     <p key={x.key}>{x.name}</p>
-                ])}
+        if(this.state.mounted){
+            return (
+                <div>
+                    {this.state.shoppingList.map(x => [
+                        <p key={x.key}>{x.name}</p>
+                    ])}
 
-                <p>{this.state.totalCost}</p>
-               <Popup modal trigger={<button>Add item to shopping list</button>}>
-                    <div>
-                        <form onSubmit={this.addShoppingItem}>
-                            <input 
-                                type="text"
-                                value={this.state.added.name}
-                                onChange={this.onNameChange}
-                            />
-                            <input 
-                                type="number"
-                                value={this.state.added.price}
-                                onChange={this.onPriceChange}
-                            />
-                            <input type="submit" value="Add"/>
-                        </form>
-                   </div>    
-                </Popup>  
-            </div>
-        );
+                    <p>{this.state.totalCost}</p>
+                <Popup modal trigger={<button>Add item to shopping list</button>}>
+                        <div>
+                            <form onSubmit={this.addShoppingItem}>
+                                <input 
+                                    type="text"
+                                    value={this.state.added.name}
+                                    onChange={this.onNameChange}
+                                />
+                                <input 
+                                    type="number"
+                                    value={this.state.added.price}
+                                    onChange={this.onPriceChange}
+                                />
+                                <input type="submit" value="Add"/>
+                            </form>
+                    </div>    
+                    </Popup>  
+                </div>
+            );
+        }
+        else{
+            return null;
+        }
     }
 }
 export default ShoppingList;

@@ -14,11 +14,12 @@ class Profile extends Component {
                 username: "",
                 currentWeight: "",
                 desiredWeight: "",
-                avatar: ""
+                avatar: "",
+                mounted: false
             };
         }
 
-        componentWillMount() {
+        componentDidMount() {
           UserApi.user.getUser()
           .then(user => {
               this.setState({
@@ -28,6 +29,9 @@ class Profile extends Component {
                 avatar: user.avatar
               })
           });
+          this.setState({
+            mounted: true
+          })
         }
 
         fetchToServer = (body, request, property, value) => {
@@ -43,7 +47,8 @@ class Profile extends Component {
           })
         }
 
-          render() {
+        render() {
+          if(this.state.mounted){
             return (
               <div className="profile_wrapper">
                 <h2>Profile</h2>
@@ -85,6 +90,10 @@ class Profile extends Component {
               </div>
             );
           }
+          else{
+            return null;
+          }
+        }
 }
 
 export default Profile;

@@ -6,7 +6,8 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-       logged: false
+      mounted: false,
+      logged: false
     };
   }
   componentDidMount(){
@@ -17,6 +18,9 @@ class App extends Component {
             logged: true
           })
         }
+        this.setState({
+          mounted: true
+        })
       })
   }
   login = callback =>{
@@ -26,11 +30,16 @@ class App extends Component {
     console.log(callback);
   }
   render(){
-    if(this.state.logged === true){
-      return <Main/>
+    if(this.state.mounted){
+      if(this.state.logged === true){
+        return <Main/>
+      }
+      else{
+        return <Guest handleLogin={this.login}/>
+      }
     }
     else{
-      return <Guest handleLogin={this.login}/>
+      return null;
     }
   }
 }

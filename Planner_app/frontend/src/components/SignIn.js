@@ -9,6 +9,7 @@ class SignIn  extends Component{
             logged: false,
             username: "",
             password: "",
+            succesfull: true
         }
     }
     onUsernameChange = e => {
@@ -23,6 +24,9 @@ class SignIn  extends Component{
     }
     login = e =>{
         e.preventDefault();
+        this.setState({
+            succesfull: true
+        });
         const user = JSON.stringify({
             username: this.state.username,
             password: this.state.password
@@ -38,6 +42,11 @@ class SignIn  extends Component{
                         logged: true
                     });
                     this.props.handleChange(true);
+                }
+                else{
+                    this.setState({
+                        succesfull: false
+                    });
                 }
             })
     }
@@ -59,6 +68,9 @@ class SignIn  extends Component{
                     onChange={this.onPasswordChange}
                 /><br/>
                 <input id="login_button" type="submit" value="Login"/><br/>
+                
+                {!this.state.succesfull && <p>Incorrect username or password</p>}
+ 
             </form>
         </div>
         );

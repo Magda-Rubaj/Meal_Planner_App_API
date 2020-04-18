@@ -50,7 +50,9 @@ class ProductSave extends Component {
         e.preventDefault();
         let data = new FormData();
         data.append('name', this.state.name);
-        data.append('image', this.state.image, this.state.image.name);
+        if(this.state.image !== null){
+            data.append('image', this.state.image, this.state.image.name);
+        }
         data.append('calories', this.state.calories);
         data.append('carbohydrates', this.state.carbs);
         data.append('protein', this.state.protein);

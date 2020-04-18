@@ -5,10 +5,11 @@ from .models import CustomUser, Products, DailyMeals, ShoppingListItem
 from .serializers import CustomUserSerializer, ProductSerializer, DailyMealSerializer, ShoppingListSerializer
 from .permissions import IsPostOrAuth
 from django_filters.rest_framework import DjangoFilterBackend
+from .paginations import PageNumberOnlyPagination
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    #permission_classes = (IsPostOrAuth, )
+    permission_classes = (IsPostOrAuth, )
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer   
     
@@ -17,6 +18,8 @@ class ProductViewSet(viewsets.ModelViewSet):
     serializer_class = ProductSerializer   
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['owner']
+    pagination_class = PageNumberOnlyPagination
+    PageNumberOnlyPagination.page_size = 7 
 
 class DailyMealsViewSet(viewsets.ModelViewSet):
     queryset = DailyMeals.objects.all()
