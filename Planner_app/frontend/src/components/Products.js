@@ -14,7 +14,7 @@ class Products extends Component{
         }
     }
     setProducts = page => {
-      ProductApi.products.getProducts(localStorage.getItem('user_id'), page)
+      ProductApi.products.getProducts(localStorage.getItem('user_id'), `&page=${page}`)
         .then(res => {
           console.log(res);
           this.setState({
@@ -75,19 +75,21 @@ class Products extends Component{
         return (
          <div className="meals_wrapper">
             <h2>Saved meals</h2>
-            <div className="meal_container">
-              {this.state.products.map(product => 
-                <figure key={product.id}>
-                  <img src={product.image} alt="meal" height="85" width="85"/>
-                  <figcaption>{product.name}</figcaption>
-                </figure>
-              )}
-              <ProductSave saveMeal={this.addProduct}/> 
-            </div> 
-            <div className="pagination">
-              <button onClick={this.toPrev}>prev</button>
-              <label>{this.state.currPage}</label>
-              <button onClick={this.toNext}>next</button>
+            <div className="combined">
+              <div className="meal_container">
+                {this.state.products.map(product => 
+                  <figure key={product.id}>
+                    <img src={product.image} alt="meal" height="85" width="85"/>
+                    <figcaption>{product.name}</figcaption>
+                  </figure>
+                )}
+                <ProductSave saveMeal={this.addProduct}/> 
+              </div> 
+              <div className="pagination">
+                <button onClick={this.toPrev}>prev</button>
+                <label>{this.state.currPage}</label>
+                <button onClick={this.toNext}>next</button>
+              </div>
             </div>            
          </div>
         );

@@ -40,8 +40,8 @@ class DailyMeals extends Component {
                     
                 })
             }))
-        ProductApi.products.getProducts(localStorage.getItem('user_id'))
-            .then(res => res.map(x => { 
+        ProductApi.products.getProducts(localStorage.getItem('user_id'), "")
+            .then(res => res.results.map(x => { 
                     const key = this.state.mealChoice.length;
                     const newProperties = ({ key: key, value: x.name, label: x.name });
                     const modified = Object.assign(newProperties, x)
@@ -84,26 +84,36 @@ class DailyMeals extends Component {
     render(){
         if(this.state.mounted){
             return (
-                <div>
-                    {this.state.mealList.map(meal => <p key={meal.key}>{meal.value}</p>)}
-                    <p>{this.state.totalCalories}</p>
-                    <Popup modal trigger={<button>Add Meal</button>}>
-                        <div>
-                            <form onSubmit={this.addMeal}>
-                                <Select
-                                    value={this.state.selectedMeal}
-                                    options={this.state.mealChoice}
-                                    onChange={this.handleChange}
-                                />
-                            <input 
-                                    type="number"
-                                    value={this.state.quantity}
-                                    onChange={this.onQuantityChange}
-                                />
-                                <input type="submit" value="Add"/>
-                            </form>
-                    </div>    
-                    </Popup>       
+                <div className="meal_day_view">
+                    <h4>Meal list</h4>
+                    <div className="items">
+                        {this.state.mealList.map(meal => <p key={meal.key}>{meal.value}</p>)}
+                    </div>
+                    <div className="bottom_info">
+                        <Popup modal trigger={<button>Add Meal</button>}>
+                            <div>
+                                <form onSubmit={this.addMeal}>
+                                    Choose meal
+                                    <Select
+                                        value={this.state.selectedMeal}
+                                        options={this.state.mealChoice}
+                                        onChange={this.handleChange}
+                                    />
+                                    Quantity
+                                    <input 
+                                        type="number"
+                                        value={this.state.quantity}
+                                        onChange={this.onQuantityChange}
+                                    />
+                                    <input type="submit" value="Add"/>
+                                </form>
+                        </div>    
+                        </Popup>
+                        <p>Total Carbs: {this.state.totalCarbs}g</p>
+                        <p>Total Protein: {this.state.totalProtein}g</p> 
+                        <p>Total Fat: {this.state.totalFats}g</p> 
+                        <p>Total Calories: {this.state.totalCalories}</p>
+                    </div>      
                 </div>
             );
             }

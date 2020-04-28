@@ -3,6 +3,7 @@ from planner.models import CustomUser, Products, DailyMeals, ShoppingListItem
 
 
 class CustomUserSerializer(serializers.ModelSerializer):
+
     class Meta:
         fields = (
             'id',
@@ -15,6 +16,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
         )
         model = CustomUser
         extra_kwargs = {'password': {'write_only': True}}
+
     def create(self, validated_data):
 
         ModelClass = self.Meta.model
@@ -27,6 +29,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
         return instance
 
 class ProductSerializer(serializers.ModelSerializer):
+
     class Meta:
         fields = (
             'id',
@@ -39,7 +42,9 @@ class ProductSerializer(serializers.ModelSerializer):
             'owner',
         )
         model = Products
+
 class DailyMealSerializer(serializers.ModelSerializer):
+
     class Meta:
         fields = (
             'id',
@@ -48,7 +53,9 @@ class DailyMealSerializer(serializers.ModelSerializer):
             'date'
         )
         model = DailyMeals
+
 class ShoppingListSerializer(serializers.ModelSerializer):
+    
     class Meta:
         fields = (
             'id',

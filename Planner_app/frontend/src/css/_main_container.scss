@@ -1,91 +1,13 @@
 .main_container{
-    background: rgb(250, 250, 250);
+    background: rgb(238, 238, 245);
     border-radius: 0 8px 8px 0;
     width: 78%;
-        .profile_wrapper{
-            margin-left: 40px;
-            margin-top: 15px;
-            .user_info{
-                display: flex;
-                .info_left{
-                    margin-top: 40px;
-                    .info_block{
-                        margin-top: 25px;
-                        h5{
-                            font-size: 18px;
-                        }
-                        h6{
-                            font-size: 16px;
-                            margin-top: 8px;
-                            background: linear-gradient(rgb(32, 187, 214), rgb(4, 189, 167));
-                            background-clip: text;
-                            -webkit-background-clip: text;
-                            -webkit-text-fill-color: transparent;
-                        }
-                        .change_button{ 
-                            background: url(../resources/edit.svg) no-repeat; 
-                            border: none;
-                            font-family: 'Comfortaa', cursive;
-                            font-size: 11px;
-                            padding-left: 15px;
-                            border-radius: 5px;
-                            margin-top: 8px;
-                            position: relative;
-                        }
-                    }
-                }
-            }
-            .info_right{
-                margin-top: 100px;
-                margin-left: 20%;
-                img{
-                    border-radius: 5px;
-                }
-                .avatar_change{
-                    input[type=submit]{
-                        margin-top: 10px;
-                        border: none;
-                        background: linear-gradient(rgb(32, 187, 214), rgb(4, 189, 167));
-                        border-radius: 4px;
-                        font-family: 'Comfortaa', cursive;
-                        padding: 5px;
-                        color: white;
-                    }
-                }
-            }
-        }
-        .meals_wrapper{
-            width: 100%;
-            margin-top: 15px;
-            h2{
-                margin-left: 40px;
-            }
-            .meal_container{
-                width: 80%;
-                margin-left: 80px;
-                display: grid;
-                margin-top: 40px;
-                grid-template-columns: 1fr 1fr 1fr 1fr;
-                figure{
-                    margin-top: 30px;
-                    display: block;
-                    width: 85px;
-                    figcaption{
-                        text-align: center;
-                    }
-                }
-                button{
-                    margin-top: 30px;
-                    height: 85px;
-                    width: 85px;
-                    background: url(../resources/add.svg) no-repeat;
-                    background-color: rgb(32, 187, 214);border: none;
-                }
-            }
-        }
-
-        h2{
+    @import 'profile';
+    @import 'meals';
+    @import 'day';
+    @import 'calendar';  
+    h2{
             margin-bottom: 15px;
             font-size: 30px;
-        }
+    }
 }

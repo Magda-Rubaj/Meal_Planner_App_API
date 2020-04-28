@@ -14,8 +14,8 @@ class CalendarComp extends Component {
     }
     render(){
         return (
-            <div>
-                <Calendar onClickDay={this.click}/>        
+            <div className="calendar_wrapper">
+                <Calendar minDetail="year" onClickDay={this.click}/>        
             </div>
         );
     }

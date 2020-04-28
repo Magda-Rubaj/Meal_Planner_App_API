@@ -7,9 +7,11 @@ class CalendarDay extends Component {
     
     render(){
         return (
-            <div>
-                <DailyMeals date={this.props.date}/>
-                <ShoppingList date={this.props.date}/>
+            <div className="day_wrapper">
+                <div className="day_view">
+                    <DailyMeals date={this.props.date}/>
+                    <ShoppingList date={this.props.date}/>
+                </div>
             </div>
         );
     }

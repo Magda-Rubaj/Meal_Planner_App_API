@@ -93,7 +93,7 @@ html, body {
           background: url(../resources/logout.svg) no-repeat;
           font-family: 'Comfortaa', cursive; }
     .Main .wrapper .main_container {
-      background: #fafafa;
+      background: #eeeef5;
       border-radius: 0 8px 8px 0;
       width: 78%; }
       .Main .wrapper .main_container .profile_wrapper {
@@ -137,29 +137,127 @@ html, body {
             padding: 5px;
             color: white; }
       .Main .wrapper .main_container .meals_wrapper {
-        width: 100%;
-        margin-top: 15px; }
+        margin-top: 15px;
+        width: 100%; }
         .Main .wrapper .main_container .meals_wrapper h2 {
           margin-left: 40px; }
-        .Main .wrapper .main_container .meals_wrapper .meal_container {
+        .Main .wrapper .main_container .meals_wrapper .combined {
+          align-items: center;
+          text-align: center; }
+          .Main .wrapper .main_container .meals_wrapper .combined .meal_container {
+            width: 80%;
+            display: grid;
+            margin: 0 auto;
+            margin-top: 40px;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            text-align: center;
+            justify-items: center; }
+            .Main .wrapper .main_container .meals_wrapper .combined .meal_container figure {
+              margin-top: 30px;
+              display: block;
+              width: 85px; }
+              .Main .wrapper .main_container .meals_wrapper .combined .meal_container figure img {
+                border-radius: 6px;
+                box-shadow: 0 0 5px gray; }
+            .Main .wrapper .main_container .meals_wrapper .combined .meal_container button {
+              margin-top: 30px;
+              height: 85px;
+              width: 85px;
+              background: url(../resources/add.svg) no-repeat;
+              background-color: #20bbd6;
+              border: none;
+              border-radius: 6px; }
+          .Main .wrapper .main_container .meals_wrapper .combined .pagination {
+            margin-top: 5vh; }
+            .Main .wrapper .main_container .meals_wrapper .combined .pagination label {
+              padding: 5px;
+              border: 0.5px solid gray;
+              margin-left: 2px;
+              margin-right: 2px;
+              padding-left: 10px;
+              padding-right: 10px;
+              background: white; }
+            .Main .wrapper .main_container .meals_wrapper .combined .pagination button {
+              background: #30343d;
+              border: none;
+              padding: 5px;
+              border-radius: 3px;
+              color: white; }
+      .Main .wrapper .main_container .day_wrapper {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center; }
+        .Main .wrapper .main_container .day_wrapper .day_view {
+          height: 80%;
           width: 80%;
-          margin-left: 80px;
-          display: grid;
-          margin-top: 40px;
-          grid-template-columns: 1fr 1fr 1fr 1fr; }
-          .Main .wrapper .main_container .meals_wrapper .meal_container figure {
-            margin-top: 30px;
-            display: block;
-            width: 85px; }
-            .Main .wrapper .main_container .meals_wrapper .meal_container figure figcaption {
-              text-align: center; }
-          .Main .wrapper .main_container .meals_wrapper .meal_container button {
-            margin-top: 30px;
-            height: 85px;
-            width: 85px;
-            background: url(../resources/add.svg) no-repeat;
-            background-color: #20bbd6;
+          display: inline-flex; }
+          .Main .wrapper .main_container .day_wrapper .day_view .meal_day_view, .Main .wrapper .main_container .day_wrapper .day_view .shopping_day_view {
+            position: relative;
+            padding-left: 6%;
+            display: flex;
+            flex-direction: column;
+            width: 45%;
+            height: 100%;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray; }
+            .Main .wrapper .main_container .day_wrapper .day_view .meal_day_view h4, .Main .wrapper .main_container .day_wrapper .day_view .shopping_day_view h4 {
+              margin-top: 4%;
+              margin-bottom: 10%;
+              font-size: 20px; }
+            .Main .wrapper .main_container .day_wrapper .day_view .meal_day_view .bottom_info, .Main .wrapper .main_container .day_wrapper .day_view .shopping_day_view .bottom_info {
+              position: absolute;
+              width: 90%;
+              border-top: 0.5px solid gray;
+              bottom: 2%;
+              left: 50%;
+              transform: translate(-50%);
+              font-size: 12px; }
+            .Main .wrapper .main_container .day_wrapper .day_view .meal_day_view .item, .Main .wrapper .main_container .day_wrapper .day_view .shopping_day_view .item {
+              display: inline; }
+            .Main .wrapper .main_container .day_wrapper .day_view .meal_day_view p, .Main .wrapper .main_container .day_wrapper .day_view .shopping_day_view p {
+              margin-top: 5%; }
+          .Main .wrapper .main_container .day_wrapper .day_view .meal_day_view {
+            margin-right: 7%; }
+          .Main .wrapper .main_container .day_wrapper .day_view .shopping_day_view {
+            margin-left: 7%; }
+      .Main .wrapper .main_container .calendar_wrapper {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-items: center;
+        height: 100%;
+        width: 100%; }
+        .Main .wrapper .main_container .calendar_wrapper .react-calendar {
+          width: 90%;
+          height: 80%;
+          background: white;
+          border: 1px solid #a0a096;
+          box-shadow: 0 0 15px gray;
+          margin: auto; }
+          .Main .wrapper .main_container .calendar_wrapper .react-calendar .react-calendar button {
+            background: none;
             border: none; }
+          .Main .wrapper .main_container .calendar_wrapper .react-calendar .react-calendar__tile {
+            max-width: 100%;
+            height: 10vh;
+            text-align: center;
+            padding: 0.75em 0.5em;
+            background: none;
+            border: none; }
+          .Main .wrapper .main_container .calendar_wrapper .react-calendar .react-calendar__navigation {
+            height: 44px;
+            margin-bottom: 1em;
+            background: #0aa57e;
+            border: none; }
+          .Main .wrapper .main_container .calendar_wrapper .react-calendar .react-calendar__navigation button {
+            min-width: 44px;
+            background: none;
+            border: none; }
+          .Main .wrapper .main_container .calendar_wrapper .react-calendar .react-calendar__tile--now {
+            background: #0aa57e; }
       .Main .wrapper .main_container h2 {
         margin-bottom: 15px;
         font-size: 30px; }

@@ -23,6 +23,7 @@ class ShoppingList extends Component {
                     name: x.content,
                     price: x.price
                 }
+                console.log(x);
                 this.setState(prevState => ({
                     shoppingList: [...prevState.shoppingList, obj],
                     totalCost: this.state.totalCost + obj.price
@@ -70,29 +71,36 @@ class ShoppingList extends Component {
     render(){
         if(this.state.mounted){
             return (
-                <div>
-                    {this.state.shoppingList.map(x => [
-                        <p key={x.key}>{x.name}</p>
-                    ])}
-
-                    <p>{this.state.totalCost}</p>
-                <Popup modal trigger={<button>Add item to shopping list</button>}>
-                        <div>
-                            <form onSubmit={this.addShoppingItem}>
-                                <input 
-                                    type="text"
-                                    value={this.state.added.name}
-                                    onChange={this.onNameChange}
-                                />
-                                <input 
-                                    type="number"
-                                    value={this.state.added.price}
-                                    onChange={this.onPriceChange}
-                                />
-                                <input type="submit" value="Add"/>
-                            </form>
-                    </div>    
-                    </Popup>  
+                <div className="shopping_day_view">
+                    <h4>Shopping list</h4>
+                    {this.state.shoppingList.map(x => 
+                        <div className="item" key={x.key}>
+                            <input type="checkbox" id={x.key + 'l'}/>
+                            <label htmlFor={x.key + 'l'}>{x.name}</label>
+                        </div>
+                    )}
+                    <div className="bottom_info">
+                        <Popup modal trigger={<button>Add item</button>}>
+                                <div>
+                                    <form onSubmit={this.addShoppingItem}>
+                                        Name
+                                        <input 
+                                            type="text"
+                                            value={this.state.added.name}
+                                            onChange={this.onNameChange}
+                                        />
+                                        Price
+                                        <input 
+                                            type="number"
+                                            value={this.state.added.price}
+                                            onChange={this.onPriceChange}
+                                        />
+                                        <input type="submit" value="Add"/>
+                                    </form>
+                            </div>    
+                            </Popup> 
+                            <p>Total Cost: {this.state.totalCost}</p> 
+                        </div>
                 </div>
             );
         }

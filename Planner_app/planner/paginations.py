@@ -1,7 +1,8 @@
 from rest_framework.pagination import PageNumberPagination
 
-class PageNumberOnlyPagination(PageNumberPagination):
 
+class PageNumberOnlyPagination(PageNumberPagination):
+    
     def get_next_link(self):
         if not self.page.has_next():
             return None

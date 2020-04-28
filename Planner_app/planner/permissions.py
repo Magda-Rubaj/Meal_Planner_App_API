@@ -1,8 +1,7 @@
 from rest_framework.permissions import BasePermission
-from rest_framework import permissions
 
 
-class IsPostOrAuth(permissions.BasePermission):
+class IsPostOrAuth(BasePermission):
 
     def has_permission(self, request, view):
         if request.method == 'POST':
