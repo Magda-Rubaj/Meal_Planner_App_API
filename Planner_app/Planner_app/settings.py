@@ -56,11 +56,12 @@ INSTALLED_APPS = [
     'planner',
     'rest_framework',
     'corsheaders',
-    'django_filters'
+    'django_filters',
+    'coverage'
 ]
 REST_FRAMEWORK = {
      'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -69,7 +70,7 @@ REST_FRAMEWORK = {
     
 }
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=20),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=14),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': False,

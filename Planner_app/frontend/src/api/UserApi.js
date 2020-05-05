@@ -37,6 +37,10 @@ export default {
             headers: {'Content-Type':'application/json'},
             body: body
           })
+          .then(res =>res)
+          .catch(e => {
+                console.log(e);
+          })
           
     }
 }

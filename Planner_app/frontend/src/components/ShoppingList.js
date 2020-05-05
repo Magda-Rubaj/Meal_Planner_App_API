@@ -83,13 +83,11 @@ class ShoppingList extends Component {
                         <Popup modal trigger={<button>Add item</button>}>
                                 <div>
                                     <form onSubmit={this.addShoppingItem}>
-                                        Name
                                         <input 
                                             type="text"
                                             value={this.state.added.name}
                                             onChange={this.onNameChange}
                                         />
-                                        Price
                                         <input 
                                             type="number"
                                             value={this.state.added.price}

@@ -12,7 +12,6 @@ import CalendarDay from './CalendarDay';
 import Nav from './Nav';
 import '../css/Main.css';
 import TokenApi from '../api/TokenApi.js';
-import Home from './Home';
 
 
 class Main extends Component {
@@ -87,10 +86,6 @@ class Main extends Component {
                 <Nav />
               </div>
               <div className="main_container">
-                <Route
-                  path="/home"
-                  render={(props) => <Home {...props} username={this.state.username} />}
-                />
                 <Route
                   path="/profile"
                   render={(props) => <Profile {...props} handleChange={this.changeInfo} />}

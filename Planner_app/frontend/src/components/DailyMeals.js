@@ -93,14 +93,12 @@ class DailyMeals extends Component {
                         <Popup modal trigger={<button>Add Meal</button>}>
                             <div>
                                 <form onSubmit={this.addMeal}>
-                                    Choose meal
                                     <Select
                                         value={this.state.selectedMeal}
                                         options={this.state.mealChoice}
                                         onChange={this.handleChange}
                                     />
-                                    Quantity
-                                    <input 
+                                <input 
                                         type="number"
                                         value={this.state.quantity}
                                         onChange={this.onQuantityChange}

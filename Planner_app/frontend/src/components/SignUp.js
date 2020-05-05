@@ -10,8 +10,8 @@ class SignUp  extends Component{
             username: "",
             email: "",
             password: "",
-            currentWeight: null,
-            desiredWeight: null
+            currentWeight: "",
+            desiredWeight: ""
         }
     }
     onEmailChange = e => {
@@ -37,7 +37,7 @@ class SignUp  extends Component{
     }
     onDesWeightChange = e => {
         this.setState({
-            currentWeight: e.target.value
+            desiredWeight: e.target.value
         });
     }
     register = (e) =>{
@@ -60,31 +60,31 @@ class SignUp  extends Component{
                 <input 
                     type="email"
                     value={this.state.email}
-                    onChange={this.state.onEmailChange}
+                    onChange={this.onEmailChange}
                 /><br/>
                 <h5>Username</h5>
                 <input 
                     type="username"
                     value={this.state.username}
-                    onChange={this.state.onUsernameChange}
+                    onChange={this.onUsernameChange}
                 /><br/>
                 <h5>Password</h5>
                 <input 
                     type="password"
                     value={this.state.password}
-                    onChange={this.state.onPasswordChange}
+                    onChange={this.onPasswordChange}
                 /><br/>
                 <h5>Current Weight</h5>
                 <input 
                     type="number"
                     value={this.state.currentWeight}
-                    onChange={this.state.onCurrWeightChange}
+                    onChange={this.onCurrWeightChange}
                 /><br/>
                 <h5>Desired Weight</h5>
                 <input 
                     type="number"
                     value={this.state.desiredWeight}
-                    onChange={this.state.onDesWeightChange}
+                    onChange={this.onDesWeightChange}
                 /><br/>
                 <input type="submit" value="Sign Up"/><br/>
             </form>

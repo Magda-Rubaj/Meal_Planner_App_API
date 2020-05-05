@@ -5,8 +5,8 @@ from django.contrib.auth.models import AbstractUser
 
 class CustomUser(AbstractUser):
     avatar = models.ImageField(blank=True, upload_to='post_images', default='defaults\default_avatar.png')
-    currentWeight = models.IntegerField(blank=True, default=0)
-    desiredWeight = models.IntegerField(blank=True, default=0)
+    currentWeight = models.IntegerField(blank=True)
+    desiredWeight = models.IntegerField(blank=True)
 
 class Products(models.Model):
     name = models.CharField(max_length=20)
