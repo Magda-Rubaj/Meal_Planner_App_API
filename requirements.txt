@@ -1,3 +1,8 @@
 Django >= 3.1.1
 djangorestframework >= 3.11.1
 psycopg2
+django-cors-headers
+django-filter
+coverage
+djangorestframework-simplejwt
+Pillow

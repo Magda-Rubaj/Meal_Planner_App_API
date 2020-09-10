@@ -1,1 +1,3 @@
-.coverage
+Planner_app/.coverage
+Pipfile
+.vscode

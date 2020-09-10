@@ -41,7 +41,15 @@ class Main extends Component {
       this.setState({
         mounted: true
       })
+    this.interval = setInterval(this.refresh, this.minutesToMili(2) - 10)
   }
+
+  componentWillUnmount(){
+    clearInterval(this.interval)
+  }
+
+  minutesToMili = minutes => minutes * 1000 * 60
+
   changeInfo = callback => {
     this.setState({
       username: callback.username,
@@ -65,12 +73,12 @@ class Main extends Component {
           localStorage.setItem('refresh_token', res.refresh);
         }
       })
+      alert("Token refreshed")
   }
   render() {
     if(this.state.mounted){
       return (
         <div className="Main">
-          <button className="refresh" onClick={this.refresh}>Refresh</button>
           <HashRouter>
             <Redirect to="/home" />
             <div className="wrapper">
