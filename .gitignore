@@ -1,3 +1,5 @@
 Planner_app/.coverage
+Planner_app/planner/__pycache__/
+Planner_app/Planner_app/__pycache__/
 Pipfile
 .vscode
