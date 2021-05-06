@@ -1,5 +1,6 @@
 Planner_app/.coverage
 Planner_app/.env
+Planner_app/media/post_images/*
 Planner_app/planner/__pycache__/
 Planner_app/Planner_app/__pycache__/
 Planner_app/planner/migrations/
