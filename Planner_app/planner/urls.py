@@ -3,6 +3,7 @@ from rest_framework import routers
 from rest_framework_simplejwt import views as jwt_views
 from . import views
 
+
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'products', views.ProductViewSet)
