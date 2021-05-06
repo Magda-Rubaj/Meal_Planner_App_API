@@ -17,12 +17,12 @@ pip install -r requirements.txt
 ```
 * Create and configure postgresql database
 * Create .env file at the same level as manage.py file, and set variables:
-- SECRET_KEY
-- DEBUG
-- DB_NAME
-- DB_USER
-- DB_PASSWORD
-- DB_HOST
+ SECRET_KEY
+ DEBUG
+ DB_NAME
+ DB_USER
+ DB_PASSWORD
+ DB_HOST
 * Run the commands: 
 ```bash
 python manage.py makemigrations
